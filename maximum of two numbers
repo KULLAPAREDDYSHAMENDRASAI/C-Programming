@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    int a, b, max;
+
+    // Prompt user for input
+    printf("Enter the first number: ");
+    scanf("%d", &a);
+    printf("Enter the second number: ");
+    scanf("%d", &b);
+
+    // Determine the maximum of the two numbers
+    if (a > b) {
+        max = a;
+    } else {
+        max = b;
+    }
+
+    // Display the result
+    printf("The maximum of %d and %d is %d.\n", a, b, max);
+
+    return 0;
+}
