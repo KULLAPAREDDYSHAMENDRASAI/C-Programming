@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main() {
+    int number;
+    long long factorial = 1;  // Using long long to handle large factorials
+
+    // Prompt user for input
+    printf("Enter a positive integer: ");
+    scanf("%d", &number);
+
+    // Check if the input is a non-negative integer
+    if (number < 0) {
+        printf("Factorial is not defined for negative numbers.\n");
+    } else {
+        // Calculate factorial using a loop
+        for (int i = 1; i <= number; i++) {
+            factorial *= i;  // Multiply each number from 1 to 'number'
+        }
+
+        // Display the result
+        printf("The factorial of %d is %lld.\n", number, factorial);
+    }
+
+    return 0;
+}
