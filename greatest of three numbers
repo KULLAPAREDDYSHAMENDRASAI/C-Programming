@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+    int num1, num2, num3, greatest;
+
+    // Ask the user to enter three numbers
+    printf("Enter three numbers: ");
+    scanf("%d %d %d", &num1, &num2, &num3);
+
+    // Determine the greatest number
+    greatest = num1; // Assume num1 is the greatest initially
+
+    if (num2 > greatest) {
+        greatest = num2; // Update greatest if num2 is greater
+    }
+    if (num3 > greatest) {
+        greatest = num3; // Update greatest if num3 is greater
+    }
+
+    // Print the greatest number
+    printf("The greatest of the three numbers is: %d\n", greatest);
+
+    return 0;
+}
