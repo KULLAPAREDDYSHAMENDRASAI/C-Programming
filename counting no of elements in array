@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+    int n, i;
+
+    // Prompt the user for the number of elements
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    // Check if the number is positive
+    if (n <= 0) {
+        printf("The number of elements must be a positive integer.\n");
+        return 1; // Exit with an error code
+    }
+
+    int array[n]; // Declare an array of size n
+
+    // Input elements into the array
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &array[i]);
+    }
+
+    // Output the number of elements
+    printf("The number of elements in the array is: %d\n", n);
+
+    return 0;
+}
