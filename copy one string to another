@@ -1,0 +1,29 @@
+
+#include <stdio.h>
+
+void stringCopy(char *dest, const char *src) {
+    // Copy each character from src to dest
+    while (*src != '\0') {
+        *dest = *src;
+        dest++;
+        src++;
+    }
+    // Null-terminate the destination string
+    *dest = '\0';
+}
+
+int main() {
+    char source[100], destination[100];
+
+    // Prompt user for input
+    printf("Enter a string: ");
+    fgets(source, sizeof(source), stdin);
+
+    // Copy source string to destination
+    stringCopy(destination, source);
+
+    // Output the copied string
+    printf("Copied string: %s", destination);
+
+    return 0;
+}
