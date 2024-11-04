@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_LENGTH 100
+
+// Function to remove vowels from a string
+void removeVowels(char *str) {
+    int j = 0;
+    char temp[MAX_LENGTH];
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        // Check if the character is a vowel
+        if (str[i] != 'a' && str[i] != 'e' && str[i] != 'i' && 
+            str[i] != 'o' && str[i] != 'u' && str[i] != 'A' && 
+            str[i] != 'E' && str[i] != 'I' && str[i] != 'O' && 
+            str[i] != 'U') {
+            temp[j++] = str[i]; // Add non-vowel to temporary array
+        }
+    }
+    temp[j] = '\0'; // Null-terminate the new string
+    strcpy(str, temp); // Copy the result back to the original string
+}
+
+int main() {
+    char str[MAX_LENGTH];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = 0; // Remove newline character if present
+
+    removeVowels(str);
+
+    printf("String after removing vowels: \"%s\"\n", str);
+
+    return 0;
+}
