@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+void reverseArray(int arr[], int size) {
+    int start = 0;
+    int end = size - 1;
+    int temp;
+
+    while (start < end) {
+        // Swap the elements at start and end
+        temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+
+        // Move towards the middle
+        start++;
+        end--;
+    }
+}
+
+int main() {
+    int n, i;
+
+    // Prompt the user for the number of elements
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    int array[n]; // Declare an array of size n
+
+    // Input elements into the array
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &array[i]);
+    }
+
+    // Reverse the array
+    reverseArray(array, n);
+
+    // Display the reversed array
+    printf("Reversed array:\n");
+    for (i = 0; i < n; i++) {
+        printf("%d ", array[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
