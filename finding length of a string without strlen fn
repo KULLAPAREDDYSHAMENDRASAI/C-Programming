@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int stringLength(const char *str) {
+    int length = 0;
+
+    // Loop through the string until the null terminator is found
+    while (str[length] != '\0') {
+        length++;
+    }
+
+    return length;
+}
+
+int main() {
+    char str[100];
+
+    // Prompt user for input
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    // Calculate the length of the string
+    int length = stringLength(str);
+
+    // Output the result
+    printf("Length of the string: %d\n", length);
+
+    return 0;
+}
