@@ -1,0 +1,62 @@
+#include <stdio.h>
+
+#define MAX 10  // Maximum size of the matrix (for demonstration purposes)
+
+// Function to input matrix elements
+void inputMatrix(int matrix[MAX][MAX], int rows, int cols) {
+    printf("Enter elements of the matrix:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("Enter element at [%d][%d]: ", i, j);
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+}
+
+// Function to display a matrix
+void displayMatrix(int matrix[MAX][MAX], int rows, int cols) {
+    printf("Matrix:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+// Function to add two matrices
+void addMatrices(int matrix1[MAX][MAX], int matrix2[MAX][MAX], int result[MAX][MAX], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            result[i][j] = matrix1[i][j] + matrix2[i][j];
+        }
+    }
+}
+
+int main() {
+    int matrix1[MAX][MAX], matrix2[MAX][MAX], result[MAX][MAX];
+    int rows, cols;
+
+    // Input the size of the matrices
+    printf("Enter the number of rows and columns: ");
+    scanf("%d %d", &rows, &cols);
+
+    // Input the two matrices
+    printf("Enter elements of first matrix:\n");
+    inputMatrix(matrix1, rows, cols);
+    printf("Enter elements of second matrix:\n");
+    inputMatrix(matrix2, rows, cols);
+
+    // Add the matrices
+    addMatrices(matrix1, matrix2, result, rows, cols);
+
+    // Display the results
+    printf("First Matrix:\n");
+    displayMatrix(matrix1, rows, cols);
+    printf("Second Matrix:\n");
+    displayMatrix(matrix2, rows, cols);
+    printf("Sum of the two matrices:\n");
+    displayMatrix(result, rows, cols);
+
+    return 0;
+}
