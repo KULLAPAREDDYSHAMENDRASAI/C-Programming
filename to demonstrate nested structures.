@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+
+// Define the Address structure
+struct Address {
+    char street[50];
+    char city[50];
+    char state[50];
+    int zipCode;
+};
+
+// Define the Person structure, which contains an Address structure
+struct Person {
+    char name[50];
+    int age;
+    struct Address address;  // Nested structure
+};
+
+int main() {
+    // Declare and initialize a Person variable
+    struct Person person1;
+
+    // Assign values to the Person structure
+    strcpy(person1.name, "John Doe");
+    person1.age = 30;
+
+    // Assign values to the nested Address structure
+    strcpy(person1.address.street, "123 Main St.");
+    strcpy(person1.address.city, "Springfield");
+    strcpy(person1.address.state, "IL");
+    person1.address.zipCode = 62701;
+
+    // Print the Person and Address information
+    printf("Person Information:\n");
+    printf("Name: %s\n", person1.name);
+    printf("Age: %d\n", person1.age);
+    printf("Address: %s, %s, %s %d\n",
+           person1.address.street,
+           person1.address.city,
+           person1.address.state,
+           person1.address.zipCode);
+
+    return 0;
+}
