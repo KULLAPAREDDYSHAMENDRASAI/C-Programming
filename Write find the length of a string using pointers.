@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+    char str[100];  // Declare a character array to store the string
+    char *ptr;      // Pointer to traverse the string
+    int length = 0; // Variable to store the length
+
+    // Input a string
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin); // Using fgets to avoid buffer overflow
+
+    ptr = str;  // Point the pointer to the beginning of the string
+
+    // Traverse the string using the pointer until we encounter the null terminator '\0'
+    while (*ptr != '\0') {
+        length++;   // Increment the length for each character
+        ptr++;      // Move the pointer to the next character
+    }
+
+    // Print the length of the string
+    printf("Length of the string is: %d\n", length);
+
+    return 0;
+}
