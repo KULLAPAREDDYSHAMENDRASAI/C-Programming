@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+// Define a structure called 'Student'
+struct Student {
+    char name[50];
+    int roll_number;
+    float marks[3]; // Array to store marks of three subjects
+};
+
+// Function to display student information
+void displayStudentInfo(struct Student s) {
+    printf("\nStudent Information:\n");
+    printf("Name: %s\n", s.name);
+    printf("Roll Number: %d\n", s.roll_number);
+    printf("Marks:\n");
+    for (int i = 0; i < 3; i++) {
+        printf("Subject %d: %.2f\n", i+1, s.marks[i]);
+    }
+}
+
+int main() {
+    // Declare a student structure and initialize it
+    struct Student student1;
+    
+    // Input the student's details
+    printf("Enter student information:\n");
+    
+    printf("Enter Name: ");
+    fgets(student1.name, sizeof(student1.name), stdin); // Read string with spaces
+    
+    printf("Enter Roll Number: ");
+    scanf("%d", &student1.roll_number);
+    
+    printf("Enter Marks for 3 subjects:\n");
+    for (int i = 0; i < 3; i++) {
+        printf("Subject %d: ", i+1);
+        scanf("%f", &student1.marks[i]);
+    }
+    
+    // Display the entered information
+    displayStudentInfo(student1);
+
+    return 0;
+}
