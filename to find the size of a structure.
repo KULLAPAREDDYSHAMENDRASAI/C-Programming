@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+// Define a structure to store a person's information
+struct Person {
+    char name[50];
+    int age;
+    float height;
+};
+
+int main() {
+    // Declare a variable of type struct Person
+    struct Person p;
+
+    // Print the size of the structure using sizeof
+    printf("Size of structure Person: %zu bytes\n", sizeof(p));
+
+    // Optionally, you can print the size of each individual member
+    printf("Size of name: %zu bytes\n", sizeof(p.name));
+    printf("Size of age: %zu bytes\n", sizeof(p.age));
+    printf("Size of height: %zu bytes\n", sizeof(p.height));
+
+    return 0;
+}
