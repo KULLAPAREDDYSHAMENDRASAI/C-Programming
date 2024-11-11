@@ -1,0 +1,78 @@
+#include <stdio.h>
+
+// Function to perform matrix multiplication using pointers
+void matrixMultiplication(int *A, int *B, int *C, int rowA, int colA, int rowB, int colB) {
+    // Ensure that the number of columns in A is equal to the number of rows in B
+    if (colA != rowB) {
+        printf("Matrix multiplication is not possible. The number of columns in A must be equal to the number of rows in B.\n");
+        return;
+    }
+
+    // Perform the matrix multiplication
+    for (int i = 0; i < rowA; i++) {
+        for (int j = 0; j < colB; j++) {
+            *(C + i * colB + j) = 0; // Initialize the C[i][j] to 0
+            for (int k = 0; k < colA; k++) {
+                *(C + i * colB + j) += *(A + i * colA + k) * *(B + k * colB + j);
+            }
+        }
+    }
+}
+
+// Function to print a matrix
+void printMatrix(int *matrix, int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", *(matrix + i * cols + j));  // Access matrix elements using pointers
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int rowA, colA, rowB, colB;
+
+    // Input the dimensions of matrix A
+    printf("Enter the number of rows and columns for matrix A: ");
+    scanf("%d %d", &rowA, &colA);
+
+    // Input the dimensions of matrix B
+    printf("Enter the number of rows and columns for matrix B: ");
+    scanf("%d %d", &rowB, &colB);
+
+    // Matrix multiplication is only possible if the number of columns in A equals the number of rows in B
+    if (colA != rowB) {
+        printf("Matrix multiplication cannot be performed. The number of columns in A must equal the number of rows in B.\n");
+        return 0;
+    }
+
+    // Declare the matrices as 2D arrays
+    int A[rowA][colA], B[rowB][colB], C[rowA][colB];  // Result matrix C
+
+    // Input elements for matrix A
+    printf("Enter elements of matrix A:\n");
+    for (int i = 0; i < rowA; i++) {
+        for (int j = 0; j < colA; j++) {
+            printf("A[%d][%d]: ", i, j);
+            scanf("%d", &A[i][j]);
+        }
+    }
+
+    // Input elements for matrix B
+    printf("Enter elements of matrix B:\n");
+    for (int i = 0; i < rowB; i++) {
+        for (int j = 0; j < colB; j++) {
+            printf("B[%d][%d]: ", i, j);
+            scanf("%d", &B[i][j]);
+        }
+    }
+
+    // Perform matrix multiplication
+    matrixMultiplication((int *)A, (int *)B, (int *)C, rowA, colA, rowB, colB);
+
+    // Print the result matrix C
+    printf("\nResult of matrix multiplication (C = A * B):\n");
+    printMatrix((int *)C, rowA, colB);
+
+    return 0;
+}
