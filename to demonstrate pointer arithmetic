@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main() {
+    // Declare an array of integers
+    int arr[] = {10, 20, 30, 40, 50};
+    
+    // Declare a pointer to the first element of the array
+    int *ptr = arr;
+
+    // Display the initial array using pointer dereferencing
+    printf("Array elements using pointer arithmetic:\n");
+    
+    // Access array elements using pointer arithmetic
+    printf("Using ptr[0]: %d\n", *ptr); // Dereferencing ptr (equivalent to arr[0])
+    printf("Using ptr[1]: %d\n", *(ptr + 1)); // ptr + 1 points to arr[1]
+    printf("Using ptr[2]: %d\n", *(ptr + 2)); // ptr + 2 points to arr[2]
+    printf("Using ptr[3]: %d\n", *(ptr + 3)); // ptr + 3 points to arr[3]
+    printf("Using ptr[4]: %d\n", *(ptr + 4)); // ptr + 4 points to arr[4]
+
+    // Pointer arithmetic with increment and decrement operators
+    printf("\nPointer arithmetic (incrementing and decrementing):\n");
+
+    // Increment the pointer (move to next element in array)
+    printf("Initial value of ptr: %p\n", (void*)ptr);
+    ptr++; // Move pointer to next element (arr[1])
+    printf("After ptr++: %p, points to value: %d\n", (void*)ptr, *ptr);
+
+    // Decrement the pointer (move back to previous element)
+    ptr--; // Move pointer back to previous element (arr[0])
+    printf("After ptr--: %p, points to value: %d\n", (void*)ptr, *ptr);
+
+    // Adding an integer value to a pointer (pointer arithmetic)
+    ptr = arr; // Reset pointer to the start of the array
+    printf("After ptr + 2: %p, points to value: %d\n", (void*)(ptr + 2), *(ptr + 2));
+
+    // Subtracting two pointers (difference in terms of number of elements)
+    int *ptr_end = arr + 4; // Pointer to last element of the array
+    int difference = ptr_end - ptr;
+    printf("Difference between ptr_end and ptr: %d\n", difference); // Should print 4
+
+    return 0;
+}
