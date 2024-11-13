@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+
+void addBinary(char bin1[], char bin2[], char result[]) {
+    int i, carry = 0;
+    int len1 = strlen(bin1);
+    int len2 = strlen(bin2);
+    int maxLen = (len1 > len2) ? len1 : len2;
+
+    // Start from the rightmost bit and add binary numbers
+    for (i = 0; i < maxLen; i++) {
+        int bit1 = (i < len1) ? bin1[len1 - 1 - i] - '0' : 0;
+        int bit2 = (i < len2) ? bin2[len2 - 1 - i] - '0' : 0;
+
+        // Add corresponding bits and carry
+        int sum = bit1 + bit2 + carry;
+        result[maxLen - i] = (sum % 2) + '0'; // Store the binary result
+        carry = sum / 2; // Carry for next bit
+    }
+
+    // If there is a carry left, add it to the result
+    if (carry) {
+        result[0] = '1';
+        result[maxLen + 1] = '\0'; // Null-terminate the string
+    } else {
+        // Shift the result to the left if there is no carry
+        for (i = 0; i <= maxLen; i++) {
+            result[i] = result[i + 1];
+        }
+        result[maxLen] = '\0'; // Null-terminate the string
+    }
+}
+
+int main() {
+    char bin1[100], bin2[100], result[101];
+
+    // Input two binary numbers
+    printf("Enter first binary number: ");
+    scanf("%s", bin1);
+    printf("Enter second binary number: ");
+    scanf("%s", bin2);
+
+    // Initialize result with all zeros
+    result[0] = '0';
+    result[1] = '\0';
+
+    // Call the function to add the binary numbers
+    addBinary(bin1, bin2, result);
+
+    // Output the result
+    printf("Sum of the binary numbers: %s\n", result);
+
+    return 0;
+}
