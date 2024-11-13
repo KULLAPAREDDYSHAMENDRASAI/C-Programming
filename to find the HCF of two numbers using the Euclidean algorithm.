@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+// Function to calculate HCF using Euclidean Algorithm
+int findHCF(int a, int b) {
+    // Loop until b becomes 0
+    while (b != 0) {
+        int remainder = a % b;  // Find the remainder
+        a = b;                   // Update a to b
+        b = remainder;           // Update b to the remainder
+    }
+    return a;  // When b becomes 0, a will be the HCF
+}
+
+int main() {
+    int num1, num2;
+
+    // Input the two numbers
+    printf("Enter two numbers: ");
+    scanf("%d %d", &num1, &num2);
+
+    // Calculate the HCF
+    int hcf = findHCF(num1, num2);
+
+    // Output the result
+    printf("The HCF of %d and %d is: %d\n", num1, num2, hcf);
+
+    return 0;
+}
