@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    float salesAmount, commission;
+
+    // Input the sales amount
+    printf("Enter the total sales amount: $");
+    scanf("%f", &salesAmount);
+
+    // Calculate the commission based on the sales amount
+    if (salesAmount < 1000) {
+        commission = salesAmount * 0.05;  // 5% commission
+    } else if (salesAmount >= 1000 && salesAmount <= 5000) {
+        commission = salesAmount * 0.10;  // 10% commission
+    } else {
+        commission = salesAmount * 0.20;  // 20% commission
+    }
+
+    // Output the commission earned
+    printf("The commission earned on a sales amount of $%.2f is: $%.2f\n", salesAmount, commission);
+
+    return 0;
+}
