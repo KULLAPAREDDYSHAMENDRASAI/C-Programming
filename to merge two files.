@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    FILE *file1, *file2, *mergedFile;
+    char filename1[100], filename2[100], mergedFilename[100];
+    char ch;
+
+    // Get the names of the files to merge and the output file name
+    printf("Enter the first file name: ");
+    scanf("%s", filename1);
+
+    printf("Enter the second file name: ");
+    scanf("%s", filename2);
+
+    printf("Enter the name of the merged file: ");
+    scanf("%s", mergedFilename);
+
+    // Open the first file for reading
+    file1 = fopen(filename1, "rb"); // Open in binary mode
+    if (file1 == NULL) {
+        perror("Error opening first file");
+        return 1;
+    }
+
+    // Open the second file for reading
+    file2 = fopen(filename2, "rb"); // Open in binary mode
+    if (file2 == NULL) {
+        perror("Error opening second file");
+        fclose(file1);
+        return 1;
+    }
+
+    // Open the merged file for writing
+    mergedFile = fopen(mergedFilename, "wb"); // Open in binary mode
+    if (mergedFile == NULL) {
+        perror("Error opening merged file");
+        fclose(file1);
+        fclose(file2);
+        return 1;
+    }
+
+    // Copy contents of the first file into the merged file
+    while ((ch = fgetc(file1)) != EOF) {
+        fputc(ch, mergedFile);
+    }
+
+    // Copy contents of the second file into the merged file
+    while ((ch = fgetc(file2)) != EOF) {
+        fputc(ch, mergedFile);
+    }
+
+    printf("Files merged successfully into '%s'.\n", mergedFilename);
+
+    // Close all the files
+    fclose(file1);
+    fclose(file2);
+    fclose(mergedFile);
+
+    return 0;
+}
