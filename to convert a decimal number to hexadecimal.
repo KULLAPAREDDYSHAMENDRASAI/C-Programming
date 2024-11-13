@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+void decimalToHexadecimal(int n) {
+    // Array to store hexadecimal number
+    char hexadecimal[32];
+    int i = 0;
+
+    // Edge case for 0
+    if (n == 0) {
+        printf("Hexadecimal: 0");
+        return;
+    }
+
+    // Convert decimal to hexadecimal
+    while (n > 0) {
+        int remainder = n % 16;
+
+        // If remainder is greater than 9, convert to corresponding letter (A-F)
+        if (remainder < 10) {
+            hexadecimal[i] = remainder + '0';  // '0' to '9'
+        } else {
+            hexadecimal[i] = remainder - 10 + 'A';  // 'A' to 'F'
+        }
+        n = n / 16;
+        i++;
+    }
+
+    // Print hexadecimal number in reverse order
+    printf("Hexadecimal: ");
+    for (int j = i - 1; j >= 0; j--) {
+        printf("%c", hexadecimal[j]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int decimal;
+
+    // Input a decimal number
+    printf("Enter a decimal number: ");
+    scanf("%d", &decimal);
+
+    // Function call to convert decimal to hexadecimal
+    decimalToHexadecimal(decimal);
+
+    return 0;
+}
