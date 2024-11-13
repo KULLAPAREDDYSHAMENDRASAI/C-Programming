@@ -1,0 +1,74 @@
+#include <stdio.h>
+
+#define MAX 10  // Maximum size of the matrix
+
+// Function to get the cofactor matrix
+void getCofactor(int matrix[MAX][MAX], int temp[MAX][MAX], int p, int q, int n) {
+    int i = 0, j = 0;
+    
+    // Loop through all rows and columns
+    for (int row = 0; row < n; row++) {
+        for (int col = 0; col < n; col++) {
+            // Skip the row p and column q
+            if (row != p && col != q) {
+                temp[i][j++] = matrix[row][col];
+                // If we reach the end of a column, reset column index and move to the next row
+                if (j == n - 1) {
+                    j = 0;
+                    i++;
+                }
+            }
+        }
+    }
+}
+
+// Function to calculate the determinant using recursion
+int determinant(int matrix[MAX][MAX], int n) {
+    int D = 0;
+    
+    // Base case for 2x2 matrix
+    if (n == 1)
+        return matrix[0][0];
+    
+    if (n == 2)
+        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+    
+    int temp[MAX][MAX];  // Temporary matrix to store cofactors
+
+    // Loop for cofactor expansion across the first row
+    for (int f = 0; f < n; f++) {
+        getCofactor(matrix, temp, 0, f, n);  // Get the cofactor of element matrix[0][f]
+        D += (f % 2 == 0 ? 1 : -1) * matrix[0][f] * determinant(temp, n - 1);
+    }
+
+    return D;
+}
+
+// Function to input matrix elements
+void inputMatrix(int matrix[MAX][MAX], int n) {
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+}
+
+int main() {
+    int matrix[MAX][MAX], n;
+    
+    // Input the size of the matrix
+    printf("Enter the size of the matrix (n x n): ");
+    scanf("%d", &n);
+
+    // Input the matrix elements
+    inputMatrix(matrix, n);
+
+    // Calculate the determinant
+    int det = determinant(matrix, n);
+
+    // Output the determinant
+    printf("The determinant of the matrix is: %d\n", det);
+
+    return 0;
+}
