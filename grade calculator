@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int main() {
+    // Declare variables
+    float assignments, quizzes, exams;
+    float weightAssignments, weightQuizzes, weightExams;
+    float finalGrade;
+    
+    // Get user inputs
+    printf("Enter the score for Assignments (out of 100): ");
+    scanf("%f", &assignments);
+    
+    printf("Enter the score for Quizzes (out of 100): ");
+    scanf("%f", &quizzes);
+    
+    printf("Enter the score for Exams (out of 100): ");
+    scanf("%f", &exams);
+    
+    printf("Enter the weight for Assignments (as a percentage, e.g., 0.4 for 40%%): ");
+    scanf("%f", &weightAssignments);
+    
+    printf("Enter the weight for Quizzes (as a percentage, e.g., 0.3 for 30%%): ");
+    scanf("%f", &weightQuizzes);
+    
+    printf("Enter the weight for Exams (as a percentage, e.g., 0.3 for 30%%): ");
+    scanf("%f", &weightExams);
+    
+    // Ensure the weights sum to 1 (100%)
+    if (weightAssignments + weightQuizzes + weightExams != 1.0) {
+        printf("The total weights should sum to 1.0 (100%%). Please check your input.\n");
+        return 1; // Exit the program if the weights do not sum to 1.
+    }
+
+    // Calculate final grade
+    finalGrade = (assignments * weightAssignments) + 
+                 (quizzes * weightQuizzes) + 
+                 (exams * weightExams);
+    
+    // Print the final grade as a percentage
+    printf("The final grade is: %.2f%%\n", finalGrade);
+    
+    return 0;
+}
