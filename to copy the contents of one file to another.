@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main() {
+    FILE *sourceFile, *destFile;  // Declare file pointers for source and destination files
+    char ch;                      // Variable to store each character temporarily
+
+    // Open the source file in read mode
+    sourceFile = fopen("source.txt", "r");
+
+    // Check if the source file was opened successfully
+    if (sourceFile == NULL) {
+        printf("Could not open source file for reading.\n");
+        return 1;  // Return an error code if the source file could not be opened
+    }
+
+    // Open the destination file in write mode
+    destFile = fopen("destination.txt", "w");
+
+    // Check if the destination file was opened successfully
+    if (destFile == NULL) {
+        printf("Could not open destination file for writing.\n");
+        fclose(sourceFile);  // Close the source file before exiting
+        return 1;  // Return an error code if the destination file could not be opened
+    }
+
+    // Read the source file character by character and write to the destination file
+    while ((ch = fgetc(sourceFile)) != EOF) {
+        fputc(ch, destFile);  // Write the character to the destination file
+    }
+
+    // Close both files
+    fclose(sourceFile);
+    fclose(destFile);
+
+    printf("File contents copied successfully.\n");
+
+    return 0;
+}
