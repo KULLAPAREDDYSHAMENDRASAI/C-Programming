@@ -1,0 +1,101 @@
+#include <stdio.h>
+
+#define MAX_TRANSACTIONS 5   // Maximum number of transactions before fee is applied
+#define TRANSACTION_FEE 2.00 // Fee charged after reaching max transactions
+
+// Function declarations
+void deposit(float* balance, int* transactionCount);
+void withdraw(float* balance, int* transactionCount);
+void balanceInquiry(float balance);
+void applyTransactionFee(float* balance);
+
+int main() {
+    float balance = 0.0;
+    int transactionCount = 0;
+    int choice;
+
+    printf("Welcome to the Bank Account Management System\n");
+
+    while (1) {
+        // Display the menu options
+        printf("\nPlease choose an option:\n");
+        printf("1. Deposit\n");
+        printf("2. Withdraw\n");
+        printf("3. Balance Inquiry\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        // Process the user's choice
+        switch (choice) {
+            case 1: // Deposit
+                deposit(&balance, &transactionCount);
+                break;
+            case 2: // Withdraw
+                withdraw(&balance, &transactionCount);
+                break;
+            case 3: // Balance Inquiry
+                balanceInquiry(balance);
+                break;
+            case 4: // Exit
+                printf("Exiting the program. Thank you for using the Bank Account Management System!\n");
+                return 0;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+
+        // Check if transaction fee should be applied
+        if (transactionCount > MAX_TRANSACTIONS) {
+            applyTransactionFee(&balance);
+        }
+    }
+
+    return 0;
+}
+
+// Function to handle deposit
+void deposit(float* balance, int* transactionCount) {
+    float amount;
+    printf("Enter the deposit amount: $");
+    scanf("%f", &amount);
+
+    if (amount <= 0) {
+        printf("Invalid deposit amount. Please enter a positive value.\n");
+    } else {
+        *balance += amount;
+        (*transactionCount)++;
+        printf("You have successfully deposited $%.2f.\n", amount);
+    }
+}
+
+// Function to handle withdrawal
+void withdraw(float* balance, int* transactionCount) {
+    float amount;
+    printf("Enter the withdrawal amount: $");
+    scanf("%f", &amount);
+
+    if (amount <= 0) {
+        printf("Invalid withdrawal amount. Please enter a positive value.\n");
+    } else if (amount > *balance) {
+        printf("Insufficient funds. You cannot withdraw more than your balance.\n");
+    } else {
+        *balance -= amount;
+        (*transactionCount)++;
+        printf("You have successfully withdrawn $%.2f.\n", amount);
+    }
+}
+
+// Function to display the balance inquiry
+void balanceInquiry(float balance) {
+    printf("Your current balance is: $%.2f\n", balance);
+}
+
+// Function to apply transaction fee after exceeding the limit
+void applyTransactionFee(float* balance) {
+    if (*balance >= TRANSACTION_FEE) {
+        *balance -= TRANSACTION_FEE;
+        printf("You have exceeded the transaction limit. A fee of $%.2f has been applied.\n", TRANSACTION_FEE);
+    } else {
+        printf("Warning: You do not have enough balance to cover the transaction fee!\n");
+    }
+}
